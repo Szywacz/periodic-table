@@ -1,5 +1,4 @@
 import { PeriodicElement } from '../models/PeriodicElement.model';
-import { of } from 'rxjs';
 
 const ELEMENT_DATA: PeriodicElement[] = [
   { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
@@ -14,4 +13,4 @@ const ELEMENT_DATA: PeriodicElement[] = [
   { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
 ];
 
-export default of(ELEMENT_DATA);
+export default ELEMENT_DATA;
