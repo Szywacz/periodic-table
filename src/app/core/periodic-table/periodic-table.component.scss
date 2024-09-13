@@ -1,6 +1,28 @@
+.table-container {
+  position: relative;
+  padding: 1em;
+}
+
+mat-table {
+  border: 1px solid #999;
+}
+
 mat-spinner {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+mat-cell {
+  cursor: pointer;
+  border-left: 1px solid #999;
+
+  &:hover {
+    background-color: #ccc;
+  }
+
+  &:first-child {
+    border-left: none;
+  }
 }

@@ -13,14 +13,12 @@ import { debounceTime, distinctUntilChanged, tap, pipe } from 'rxjs';
 
 type TableState = {
   elements: PeriodicElement[];
-  selectedElement: PeriodicElement | null;
   loading: boolean;
   searchTerm: string;
 };
 
 const initialState: TableState = {
   elements: [],
-  selectedElement: null,
   loading: false,
   searchTerm: '',
 };
@@ -35,11 +33,16 @@ export const TableStore = signalStore(
     ) => ({
       async loadElements() {
         patchState(store, { loading: true });
-        await periodicTableService.getElements().then((_) =>
-          _.subscribe((elements: PeriodicElement[]) => {
-            patchState(store, { elements: elements, loading: false });
-          })
-        );
+        const observable = await periodicTableService.getElements();
+        observable.subscribe({
+          next: (elements: PeriodicElement[]) => {
+              patchState(store, { elements, loading: false });
+            },
+            error: (error) => {
+              console.error(error);
+              patchState(store, { loading: false });
+            }
+          });
       },
       applySearchFilter: rxMethod<string>(
         pipe(
@@ -50,6 +53,28 @@ export const TableStore = signalStore(
           })
         )
       ),
+      async updateElement(
+        element: PeriodicElement
+      ) {
+        patchState(store, { loading: true });
+        const observable = await periodicTableService.updateElement(element.id, element);
+        observable.subscribe({
+            next: (updatedElement) => {
+              patchState(store, (state) => ({
+                elements: state.elements.map((e) =>
+                  e.id === updatedElement.id
+                    ? updatedElement
+                    : e
+                ),
+                loading: false,
+              }));
+            },
+            error: (error) => {
+              console.error(error);
+              patchState(store, { loading: false });
+            }
+          });
+      },
     })
   ),
   withComputed(({ elements, searchTerm }) => ({

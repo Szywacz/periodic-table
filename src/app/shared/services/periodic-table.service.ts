@@ -11,4 +11,12 @@ export class PeriodicTableService {
   async getElements(): Promise<Observable<PeriodicElement[]>> {
     return of(ELEMENT_DATA).pipe(delay(2000));
   }
+
+  async updateElement(
+    position: number,
+    element: PeriodicElement
+  ): Promise<Observable<PeriodicElement>> {
+    console.log('element updated', element);
+    return of(element).pipe(delay(100));
+  }
 }

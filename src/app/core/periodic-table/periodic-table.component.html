@@ -13,22 +13,38 @@
   <mat-table [dataSource]="store.filteredElements()">
     <ng-container matColumnDef="position">
       <mat-header-cell *matHeaderCellDef>Position</mat-header-cell>
-      <mat-cell *matCellDef="let element">{{ element.position }}</mat-cell>
+      <mat-cell
+        *matCellDef="let element"
+        (click)="updateElement(element, 'position')"
+        >{{ element.position }}
+      </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
-      <mat-cell *matCellDef="let element">{{ element.name }}</mat-cell>
+      <mat-cell
+        *matCellDef="let element"
+        (click)="updateElement(element, 'name')"
+        >{{ element.name }}
+      </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="weight">
       <mat-header-cell *matHeaderCellDef>Weight</mat-header-cell>
-      <mat-cell *matCellDef="let element">{{ element.weight }}</mat-cell>
+      <mat-cell
+        *matCellDef="let element"
+        (click)="updateElement(element, 'weight')"
+        >{{ element.weight }}
+      </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="symbol">
       <mat-header-cell *matHeaderCellDef>Symbol</mat-header-cell>
-      <mat-cell *matCellDef="let element">{{ element.symbol }}</mat-cell>
+      <mat-cell
+        *matCellDef="let element"
+        (click)="updateElement(element, 'symbol')"
+        >{{ element.symbol }}
+      </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
