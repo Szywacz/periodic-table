@@ -8,14 +8,14 @@ import ELEMENT_DATA from '@shared/data/PeriodicTableData';
 export class PeriodicTableService {
   constructor() {}
 
-  async getElements(): Promise<Observable<PeriodicElement[]>> {
+  getElements(): Observable<PeriodicElement[]> {
     return of(ELEMENT_DATA).pipe(delay(2000));
   }
 
-  async updateElement(
+  updateElement(
     position: number,
     element: PeriodicElement
-  ): Promise<Observable<PeriodicElement>> {
+  ): Observable<PeriodicElement> {
     console.log('element updated', element);
     return of(element).pipe(delay(100));
   }
