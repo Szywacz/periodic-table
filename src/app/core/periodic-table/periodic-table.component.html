@@ -7,15 +7,15 @@
       placeholder="Filter elements" />
   </mat-form-field>
 
-  @if (store.loading()) {
+  @if (loading()) {
   <mat-spinner></mat-spinner>
   } @else {
-  <mat-table [dataSource]="store.filteredElements()">
+  <mat-table [dataSource]="filteredElements()">
     <ng-container matColumnDef="position">
       <mat-header-cell *matHeaderCellDef>Position</mat-header-cell>
       <mat-cell
         *matCellDef="let element"
-        (click)="updateElement(element, 'position')"
+        (click)="openUpdateElementDialog(element, 'position')"
         >{{ element.position }}
       </mat-cell>
     </ng-container>
@@ -24,7 +24,7 @@
       <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
       <mat-cell
         *matCellDef="let element"
-        (click)="updateElement(element, 'name')"
+        (click)="openUpdateElementDialog(element, 'name')"
         >{{ element.name }}
       </mat-cell>
     </ng-container>
@@ -33,7 +33,7 @@
       <mat-header-cell *matHeaderCellDef>Weight</mat-header-cell>
       <mat-cell
         *matCellDef="let element"
-        (click)="updateElement(element, 'weight')"
+        (click)="openUpdateElementDialog(element, 'weight')"
         >{{ element.weight }}
       </mat-cell>
     </ng-container>
@@ -42,7 +42,7 @@
       <mat-header-cell *matHeaderCellDef>Symbol</mat-header-cell>
       <mat-cell
         *matCellDef="let element"
-        (click)="updateElement(element, 'symbol')"
+        (click)="openUpdateElementDialog(element, 'symbol')"
         >{{ element.symbol }}
       </mat-cell>
     </ng-container>

@@ -8,15 +8,17 @@ import ELEMENT_DATA from '@shared/data/PeriodicTableData';
 export class PeriodicTableService {
   constructor() {}
 
+  // Mock get call
   getElements(): Observable<PeriodicElement[]> {
     return of(ELEMENT_DATA).pipe(delay(2000));
   }
 
+  // Mock patch call
   updateElement(
     position: number,
     element: PeriodicElement
   ): Observable<PeriodicElement> {
     console.log('element updated', element);
-    return of(element).pipe(delay(100));
+    return of(element).pipe(delay(200));
   }
 }
